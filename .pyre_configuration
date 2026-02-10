@@ -1,0 +1,12 @@
+{
+    "source_directories": [
+        "src",
+        "scripts",
+        "tests"
+    ],
+    "search_path": [
+        ".",
+        "src",
+        "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages"
+    ]
+}

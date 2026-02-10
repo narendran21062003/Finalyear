@@ -1,0 +1,159 @@
+╔══════════════════════════════════════════════════════════════╗
+║          QUICK START GUIDE - READ THIS FIRST!                ║
+╚══════════════════════════════════════════════════════════════╝
+
+📌 ESSENTIAL SETUP (5 STEPS)
+═══════════════════════════════════════════════════════════════
+
+STEP 1️⃣: Install MySQL Database
+─────────────────────────────────
+Windows: Download from https://dev.mysql.com/downloads/installer/
+Mac:     brew install mysql && brew services start mysql
+Linux:   sudo apt install mysql-server
+
+After installation, create the database:
+  mysql -u root -p
+  CREATE DATABASE lead_management;
+  EXIT;
+
+
+STEP 2️⃣: Get Hugging Face API Token (Free!)
+─────────────────────────────────────────────
+1. Go to https://huggingface.co/
+2. Sign up (free)
+3. Go to Settings → Access Tokens
+4. Create new token (select "Read" access)
+5. COPY the token!
+
+
+STEP 3️⃣: Install Python Dependencies
+──────────────────────────────────────
+cd autonomous_lead_identifier
+python -m venv venv
+
+# Activate virtual environment:
+Windows: venv\Scripts\activate
+Mac/Linux: source venv/bin/activate
+
+pip install -r requirements.txt
+
+
+STEP 4️⃣: Configure Environment (.env file)
+────────────────────────────────────────────
+cp .env.template .env
+
+Edit .env file with:
+  DB_PASSWORD=your_mysql_password
+  HF_API_TOKEN=your_token_from_step2
+
+
+STEP 5️⃣: RUN THE PROJECT! 🚀
+─────────────────────────────
+
+Option A - Run Lead Collection:
+  python main.py
+
+Option B - View Dashboard:
+  streamlit run dashboard.py
+  (Opens browser at http://localhost:8501)
+
+
+═══════════════════════════════════════════════════════════════
+🎯 WHAT EACH FILE DOES
+═══════════════════════════════════════════════════════════════
+
+main.py          → Collects leads, analyzes with AI, saves to DB
+dashboard.py     → Shows analytics dashboard in browser
+requirements.txt → List of Python packages needed
+.env.template    → Template for your configuration
+schema.sql       → Database table structure
+
+modules/scout.py    → Web scraping logic
+modules/analyst.py  → AI analysis with Hugging Face
+config/db_config.py → Database connection
+config/hf_config.py → Hugging Face API setup
+
+
+═══════════════════════════════════════════════════════════════
+🐛 TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+❌ "Can't connect to MySQL"
+   → Check MySQL is running
+   → Verify password in .env file
+   → Make sure database exists
+
+❌ "Hugging Face API error"
+   → Check your token is correct in .env
+   → Verify internet connection
+   → Free tier has rate limits (wait a few minutes)
+
+❌ "Module not found"
+   → Activate virtual environment first!
+   → Run: pip install -r requirements.txt
+
+❌ "Chrome driver error"
+   → Make sure Chrome browser is installed
+   → Internet connection required
+
+
+═══════════════════════════════════════════════════════════════
+📊 EXPECTED OUTPUT
+═══════════════════════════════════════════════════════════════
+
+When you run `python main.py`:
+
+✓ Database initialized successfully
+📡 Step 1: Acquiring leads...
+✓ Found 5 potential leads
+🔧 Freeing browser resources...
+🤖 Step 2: Analyzing leads with AI...
+  Processing lead 1/5: Business Name
+    ✓ Pain Point: Poor Service
+    ✓ Status: Active
+✅ Pipeline completed successfully!
+
+
+When you run `streamlit run dashboard.py`:
+
+→ Browser opens automatically
+→ See charts and analytics
+→ Filter and download lead data
+
+
+═══════════════════════════════════════════════════════════════
+🎓 FOR VIVA/PRESENTATION
+═══════════════════════════════════════════════════════════════
+
+Q: Why MySQL instead of SQLite?
+A: "MySQL supports concurrent access, better scalability, and 
+   real-time dashboard analytics without blocking."
+
+Q: Why Hugging Face API?
+A: "Cloud-based API works on low-end laptops without GPU,
+   automatically updated models, enterprise-grade reliability."
+
+Q: What's the data flow?
+A: "Scraping → Verification → AI Analysis → MySQL → Dashboard"
+
+
+═══════════════════════════════════════════════════════════════
+✅ CHECKLIST BEFORE RUNNING
+═══════════════════════════════════════════════════════════════
+
+□ MySQL installed and running
+□ Database 'lead_management' created
+□ Hugging Face account created
+□ API token obtained
+□ Python 3.8+ installed
+□ Virtual environment created
+□ Dependencies installed (requirements.txt)
+□ .env file configured with password and token
+□ Chrome browser installed
+
+
+═══════════════════════════════════════════════════════════════
+
+Need help? Check README.md for detailed documentation!
+
+Good luck with your project! 🚀
